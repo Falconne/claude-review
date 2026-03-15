@@ -1,0 +1,45 @@
+# Ignore gitlab token generator log
+/data/gitlab-token-generator.log
+# Environment variables with sensitive credentials
+.env
+
+# Bootstrap build marker
+.docker-bootstrap-build
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+.vs/
+*.DotSettings.user
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.node_repl_history
+
+# TypeScript incremental compiler output
+*.tsbuildinfo
+
+# Frontend build artifacts
+dist/
+.vite/
+
+# Docker volumes (if persisted locally)
+data/teamcity/datadir/
+data/logs/
+data/screenshots/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+*.jar
+*.log
