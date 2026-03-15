@@ -1,0 +1,9 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "{{MODEL_NAME}}",
+  "providers": {
+    "{{PROVIDER_NAME}}": {
+      "apiKey": "{{MODEL_API_TOKEN}}"
+    }
+  }
+}
