@@ -3,6 +3,7 @@ applyTo: '**/*.cs'
 ---
 
 # C# Guidelines
+- This is a console app that must fail if absolutely anything unexpected happens. If an error condition occurs, never try to gracefully continue after logging a warning. The app should log the error and stop with a bad exit code.
 - Follow modern C# practices.
 - Use best practices for organsing C# code. Put services classes under a Services folder, controllers in a Controllers folder, etc. In this codebase, use the Entities folder for models.
   - Within the Services folder, create subfolders based on feature, purpose or domain, to group related service classes together. Divide functionlaity into sensible service classes, ensuring that any one service class does not contain unrelated functionality.
