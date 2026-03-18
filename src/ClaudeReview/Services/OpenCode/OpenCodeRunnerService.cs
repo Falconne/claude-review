@@ -16,6 +16,8 @@ public class OpenCodeRunnerService
     {
         _logger.LogInformation("Starting opencode in {RepoPath}", repoPath);
 
+        CopyCssTemplate(repoPath);
+
         var startInfo = new ProcessStartInfo("opencode", ["run"])
         {
             WorkingDirectory = repoPath,
@@ -47,5 +49,16 @@ public class OpenCodeRunnerService
                 "opencode completed but review.html was not found at {OutputPath}",
                 outputPath);
         }
+    }
+
+    private void CopyCssTemplate(string repoPath)
+    {
+        var cssTemplatePath = Path.Combine(AppContext.BaseDirectory, "Templates", "review.css");
+        if (!File.Exists(cssTemplatePath))
+            throw new FileNotFoundException($"CSS template not found at: {cssTemplatePath}");
+
+        var destPath = Path.Combine(repoPath, "review.css");
+        File.Copy(cssTemplatePath, destPath, overwrite: true);
+        _logger.LogInformation("Copied review.css to {DestPath}", destPath);
     }
 }
