@@ -41,7 +41,7 @@ ClaudeReview https://gitlab.example.com/mygroup/myrepo/-/merge_requests/42
 ## Project Structure
 
 ```
-ClaudeReview.sln
+src/ClaudeReview.sln
 src/ClaudeReview/
   Program.cs                                  # Entry point: reads args/env, wires DI, orchestrates steps
   Templates/
