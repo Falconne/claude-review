@@ -1,5 +1,5 @@
-using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace ClaudeReview.Services.OpenCode;
 
@@ -24,7 +24,7 @@ public class OpenCodeRunnerService
         };
 
         using var process = Process.Start(startInfo)
-            ?? throw new InvalidOperationException("Failed to start opencode process");
+                            ?? throw new InvalidOperationException("Failed to start opencode process");
 
         await process.StandardInput.WriteAsync(promptContent);
         process.StandardInput.Close();
@@ -32,12 +32,20 @@ public class OpenCodeRunnerService
         await process.WaitForExitAsync();
 
         if (process.ExitCode != 0)
+        {
             throw new InvalidOperationException($"opencode exited with code {process.ExitCode}");
+        }
 
-        var outputPath = Path.Combine(repoPath, "output", "review.html");
+        var outputPath = Path.Combine(repoPath, "__output", "review.html");
         if (File.Exists(outputPath))
+        {
             _logger.LogInformation("Review output written to {OutputPath}", outputPath);
+        }
         else
-            _logger.LogWarning("opencode completed but review.html was not found at {OutputPath}", outputPath);
+        {
+            _logger.LogWarning(
+                "opencode completed but review.html was not found at {OutputPath}",
+                outputPath);
+        }
     }
 }
