@@ -1,11 +1,6 @@
 You are performing a code review of a GitLab merge request.
 
-Review all the code changes in the current branch compared to the `{{TARGET_BRANCH}}` branch.
-
-To see the changes, run:
-```
-git diff {{TARGET_BRANCH}}...HEAD
-```
+The full diff of the current branch compared to the `{{TARGET_BRANCH}}` branch has already been generated and is available in `diff.txt` at the root of the repository. Read that file to see the changes — do not run git diff yourself.
 
 Analyse each changed file and provide a thorough code review covering:
 - Potential bugs or logic errors

@@ -45,6 +45,7 @@ try
 
     var gitService = serviceProvider.GetRequiredService<GitService>();
     var repoPath = await gitService.CloneRepository(mrInfo.SshCloneUrl, mrInfo.SourceBranch);
+    await gitService.GenerateDiff(repoPath, mrInfo.TargetBranch);
 
     var configService = serviceProvider.GetRequiredService<OpenCodeConfigService>();
     configService.SetupConfig(modelName, modelApiToken);

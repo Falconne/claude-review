@@ -40,4 +40,33 @@ public class GitService
         _logger.LogInformation("Repository cloned successfully to {WorkDir}", workDir);
         return workDir;
     }
+
+    public async Task GenerateDiff(string repoPath, string targetBranch)
+    {
+        _logger.LogInformation("Generating diff against {TargetBranch}", targetBranch);
+
+        var startInfo = new ProcessStartInfo("git", ["diff", $"{targetBranch}...HEAD"])
+        {
+            WorkingDirectory = repoPath,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false
+        };
+
+        using var process = Process.Start(startInfo)
+            ?? throw new InvalidOperationException("Failed to start git diff process");
+
+        var stdoutTask = process.StandardOutput.ReadToEndAsync();
+        var stderrTask = process.StandardError.ReadToEndAsync();
+        await process.WaitForExitAsync();
+
+        var stderr = await stderrTask;
+        if (process.ExitCode != 0)
+            throw new InvalidOperationException($"git diff failed with exit code {process.ExitCode}: {stderr}");
+
+        var diff = await stdoutTask;
+        var diffPath = Path.Combine(repoPath, "diff.txt");
+        await File.WriteAllTextAsync(diffPath, diff);
+        _logger.LogInformation("Diff written to {DiffPath}", diffPath);
+    }
 }
