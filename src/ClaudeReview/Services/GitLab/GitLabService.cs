@@ -38,11 +38,14 @@ public class GitLabService
             "MR !{MrIid}: {SourceBranch} -> {TargetBranch}, SSH URL: {SshUrl}",
             mrIid, mergeRequest.SourceBranch, mergeRequest.TargetBranch, project.SshUrlToRepo);
 
+        var fileBaseUrl = $"{baseUrl}/{projectPath}/-/blob/{mergeRequest.SourceBranch}/";
+
         return new MergeRequestInfo
         {
             SshCloneUrl = project.SshUrlToRepo,
             SourceBranch = mergeRequest.SourceBranch,
-            TargetBranch = mergeRequest.TargetBranch
+            TargetBranch = mergeRequest.TargetBranch,
+            FileBaseUrl = fileBaseUrl
         };
     }
 

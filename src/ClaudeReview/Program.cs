@@ -51,7 +51,7 @@ try
     configService.SetupConfig(modelName, modelApiToken);
 
     var promptService = serviceProvider.GetRequiredService<PromptService>();
-    var promptContent = promptService.PreparePrompt(mrInfo.TargetBranch);
+    var promptContent = promptService.PreparePrompt(mrInfo.TargetBranch, mrInfo.FileBaseUrl);
 
     var runner = serviceProvider.GetRequiredService<OpenCodeRunnerService>();
     await runner.Run(repoPath, promptContent);

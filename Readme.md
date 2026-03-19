@@ -69,5 +69,6 @@ src/ClaudeReview/
 
 Deployed to `~/.config/opencode/opencode.json` (Linux/macOS) or `%APPDATA%/opencode/opencode.json` (Windows).
 
-**`Templates/prompt.md`** — instructs the opencode agent to review the MR diff and write `output/review.html`. Placeholder replaced at runtime:
+**`Templates/prompt.md`** — instructs the opencode agent to review the MR diff and write `output/review.html`. Placeholders replaced at runtime:
 - `{{TARGET_BRANCH}}` → target branch from the GitLab MR (e.g. `main`)
+- `{{MR_FILE_BASE_URL}}` → base URL for linking to files in the MR source branch (e.g. `https://gitlab.example.com/mygroup/myrepo/-/blob/feature-branch/`). The agent appends file paths and `#L{line}` anchors to create clickable links in the HTML report.
