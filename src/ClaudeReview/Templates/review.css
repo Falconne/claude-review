@@ -167,6 +167,24 @@ h3 {
 p { margin-bottom: 0.75rem; }
 p:last-child { margin-bottom: 0; }
 
+/* ── Links ───────────────────────────────────────────────── */
+
+a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: #1d4ed8;
+}
+
+a:visited {
+  color: #7c3aed;
+}
+
 /* ── Summary section ─────────────────────────────────────── */
 
 .summary {
