@@ -30,9 +30,10 @@ public class OpenCodeConfigService
         var configPath = Path.Combine(configDir, "opencode.json");
 
         if (File.Exists(configPath))
-            throw new InvalidOperationException(
-                $"OpenCode config file already exists at: {configPath}. " +
-                "Please remove it before running this tool.");
+        {
+            _logger.LogWarning("OpenCode config file already exists at {ConfigPath}. Using existing file.", configPath);
+            return;
+        }
 
         Directory.CreateDirectory(configDir);
         File.WriteAllText(configPath, configContent);
