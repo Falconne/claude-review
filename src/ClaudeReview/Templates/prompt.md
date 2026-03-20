@@ -15,6 +15,9 @@ To construct a link, append the file path (relative to the repo root, no leading
 - File only: `{{MR_FILE_BASE_URL}}src/Services/MyService.cs`
 - File at line 42: `{{MR_FILE_BASE_URL}}src/Services/MyService.cs#L42`
 
+IMPORTANT — Getting line numbers right:
+The diff.txt file is in unified diff format. Do NOT try to derive line numbers by counting lines within the diff output — this is unreliable. Instead, when you need to reference a specific line number, open the actual source file (the repository is checked out on the source branch) and find the exact line number there. The `#L` anchor in the link must correspond to the line number in the source-branch version of the file, which is what is checked out on disk.
+
 All file/line links in the HTML must use `target="_blank"` so they open in a new tab.
 
 Output your complete review as a well-styled HTML file in `__output/review.html`. The HTML must:
